@@ -1,0 +1,11 @@
+{
+  "name": "digital-time",
+  "version": "1.0.0",
+  "description": "This is a digital time built with HTML, CSS, & JAVASCRIPT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ekundayo Mayowa",
+  "license": "ISC"
+}

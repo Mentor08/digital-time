@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Digital Time</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            max-width: 100%;
+            min-height: 100vh;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            transition: 0.3s ease-in-out;
+            position: relative;
+        }
+        h1{
+            font-size: 3rem;
+            width: 25%;
+            padding: .2rem;
+            color: blue;
+            font-weight: 800;
+            margin-bottom: 4rem;
+            letter-spacing: 2px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .container {
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 350px;
+            height: 150px;
+            box-shadow: 0px 10px 15px  blue;
+            padding-inline: 2rem;
+            border-radius: 10px;
+            transition: .3s;
+        }
+        @media (max-width:500px) {
+            .container{
+                max-width: 200px;
+                height: 100px;
+            }
+            button{
+                margin-top: 1.5rem;
+            padding: 0.2rem;
+            width: 100px;
+            height: 50px;
+            font-size: 1rem;
+            }
+        }
+        .container span {
+            font-size: 4rem;
+            font-weight:700;
+            letter-spacing: 2px;
+            margin-right: 5px;
+            transition: .3s;
+        }
+        @media (max-width:500px) {
+            .container span {
+            font-size: 2.5rem;
+            font-weight:700;
+            margin-right: 2px;
+        }
+        }
+        button{
+            margin-top: 3rem;
+            padding: .5rem;
+            width: 150px;
+            height: 50px;
+            border-radius: 5px;
+            transition: .3s ease-in-out;
+            background: blue;
+            color:white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border: 0;
+            outline: 0;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        button:active{
+            transform:scale(0.95);
+        }
+.copyright{
+position: absolute;
+bottom:0;
+color:blue;
+font-size: 1rem;
+font-weight: 700;
+}
+    </style>
+</head>
+<body>
+    <h1>DIGITAL TIME</h1>
+    <div class="container">
+        <span class="hour">00</span>
+        <span>:</span>
+        <span class="minute">00</span>
+        <span>:</span>
+        <span class="sec">00</span>
+        <span class="interval">AM</span>
+    </div>
+     <div>
+            <button>Dark Mode</button>
+        </div>
+        <p class="copyright">&#169 Ekundayo Mayowa</p>
+        
+    <script>
+        let body = document.querySelector("body");
+        let hour = document.querySelector(".hour");
+        let min = document.querySelector(".minute");
+        let sec = document.querySelector(".sec");
+        let btn = document.querySelector("button");
+        let interval = document.querySelector(".interval");
+        
+        function darkMode() {
+        if(btn.classList.toggle(".mode")) {
+            body.style.backgroundColor ="black";
+             body.style.color ="white";
+             btn.innerHTML = "light mode"
+            
+        }else {
+            body.style.backgroundColor ="white";
+            body.style.color ="black";
+            btn.innerHTML = "dark mode"
+            
+        }
+        }
+        btn.addEventListener("click", darkMode)
+    
+        function Time() {
+            let date = new Date();
+            let d_hour = date.getHours();
+            let d_min = date.getMinutes();
+            let d_sec = date.getSeconds();
+            hour.innerHTML = d_hour;
+            min.innerHTML = d_min;
+            sec.innerHTML = d_sec;
+   
+            if (d_sec<10) {
+                let pad_sec = (d_sec.toString()).padStart("2","0")
+                sec.innerHTML = pad_sec;
+            }
+            if (d_min<10) {
+                let pad_min = (d_min.toString()).padStart("2","0")
+                min.innerHTML = pad_min;
+            }
+            if (d_hour<10) {
+                let pad_hour = (d_hour.toString()).padStart("2","0")
+                hour.innerHTML = pad_hour;
+            }
+            if (d_hour>12) {
+                let hour_12 = d_hour - 12;
+                hour.innerHTML = (hour_12.toString()).padStart("2","0")
+            }
+            if(d_hour >= 12) {
+                interval.innerHTML = "PM";
+            }
+        }
+        setInterval(Time,10)
+    </script>
+</body>
+</html>
